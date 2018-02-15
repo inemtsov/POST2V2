@@ -1,0 +1,8 @@
+/.idea/*
+/out/*
+.DS_Store
+README.md
+/nbproject/*
+build.xml
+manifest.mf
+/build/*
