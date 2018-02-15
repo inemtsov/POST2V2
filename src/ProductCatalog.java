@@ -51,6 +51,8 @@ public class ProductCatalog {
                 String price = element.getElementsByTagName("price").item(0).getTextContent();
                 System.out.println(upc + " " + description + " " + price);
                 this.products.put(upc, new Item(upc, description, Float.parseFloat(price)));
+                this.listOfUPC.add(upc);
+
             }
         }
         catch(Exception e){
