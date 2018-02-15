@@ -15,7 +15,7 @@ public class PostFrame extends javax.swing.JFrame {
      */
     public PostFrame() {
         initComponents();
-        dateLabel.setText(Sale.getDate().toString());
+        //dateLabel.setText(Sale.getDate().toString());
     }
 
     /**
