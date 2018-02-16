@@ -8,6 +8,10 @@
  *
  * @author PeterJayCruz
  */
+
+import javax.swing.JOptionPane;
+
+
 public class PostFrame extends javax.swing.JFrame {
 
     /**
@@ -16,8 +20,15 @@ public class PostFrame extends javax.swing.JFrame {
     
     public PostFrame() {
         initComponents();
-        Sale s = new Sale();
-        dateLabel.setText(s.getDate().toString());
+    }
+    
+    public void popUp(){
+        JOptionPane.showMessageDialog(null, "Please enter Customer Name");
+    }
+  
+    
+    public void setSaleDate(String date){
+        dateLabel.setText(date);
     }
 
     public CheckPanel getCheckPanel(){
@@ -32,6 +43,10 @@ public class PostFrame extends javax.swing.JFrame {
     public CustomerNamePanel getCustomerNamePanel()
     {
         return this.customerNamePanel1;
+    }
+    
+    public InvoicePanel getInvoicePanel(){
+        return this.invoicePanel2;
     }
     
     /**

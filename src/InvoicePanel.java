@@ -10,12 +10,21 @@
  */
 public class InvoicePanel extends javax.swing.JPanel {
 
+    private int currentRow = 0;
     /**
      * Creates new form InvoicePanel
      */
     public InvoicePanel() {
         initComponents();
     }
+    
+    public void setLineItem(String UPC, int quantity, float unitPrice) {
+       invoiceTable.setValueAt(UPC, currentRow, 0);
+       invoiceTable.setValueAt(quantity, currentRow, 1);
+       invoiceTable.setValueAt(unitPrice, currentRow, 2);
+       invoiceTable.setValueAt(quantity*unitPrice, currentRow, 3);
+       currentRow++;
+   }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -86,7 +95,7 @@ public class InvoicePanel extends javax.swing.JPanel {
                 {null, null, null, null}
             },
             new String [] {
-                "Item", "Unit Price", "Quantity", "Extended Price"
+                "Item", "Quantity", "Unit Price", "Extended Price"
             }
         ));
         invoiceScrollPane.setViewportView(invoiceTable);

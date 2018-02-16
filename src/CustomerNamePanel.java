@@ -17,6 +17,10 @@ public class CustomerNamePanel extends javax.swing.JPanel {
     {
         initComponents();
     }
+    
+    public String getCustomerName(){
+        return customerNameText.getText();
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.

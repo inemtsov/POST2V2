@@ -29,14 +29,6 @@ public class Post
 { 
     public static void main(String[] args) throws ParserConfigurationException, SAXException {
         ProductCatalog p = new ProductCatalog();
-        
-        java.awt.EventQueue.invokeLater(new Runnable() {
-        public void run() {
-              
-        PanelMediator panelMediator;
-        panelMediator = new PanelMediator(p); 
-       
-        }
-        });
+        PanelMediator mediator = new PanelMediator(p);
     }
 }

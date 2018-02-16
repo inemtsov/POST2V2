@@ -24,6 +24,14 @@ public class ProductPanel extends javax.swing.JPanel {
             System.out.print(e);
         }
     }
+    
+    public String getSelectedUPC(){
+        return UPCSelector.getItemAt(UPCSelector.getSelectedIndex());
+    }
+    
+    public int getSelectedQuantity(){
+        return quantitySelector.getSelectedIndex()+1;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -62,7 +70,7 @@ public class ProductPanel extends javax.swing.JPanel {
 
         quantityLabel.setText("Quantity:");
 
-        quantitySelector.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
+        quantitySelector.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
