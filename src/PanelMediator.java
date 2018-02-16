@@ -1,6 +1,5 @@
 
 import java.util.Date;
-import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -71,13 +70,41 @@ public class PanelMediator {
                    framePayment.getInvoicePanel().setLineItem(description, quantity, price);
                    sale.addSaleLineItem(productCatalog.getItem(framePayment.getProductPanel().getSelectedUPC()), quantity);
                    
-                   framePayment.getInvoicePanel().setTotalTextfield(""+sale.getSubtotal());
+                   framePayment.getInvoicePanel().setTotalTextfield("$" + String.format("%.2f", sale.getSubtotal()));
                    
                } else {
                    framePayment.popUp();
                }
            }
        });
+  
+//        System.out.println( framePayment.getPaymentPanel().getComponent(0).toString());
+//       // System.out.println( framePayment.getPaymentPanel().getComponent(2).toString());
+//        System.out.println( framePayment.getPaymentPanel().getComponent(3).toString());
+//        System.out.println( framePayment.getPaymentPanel().getComponent(4).toString());
+//        System.out.println( framePayment.getPaymentPanel().getComponent(5).toString());
+
+//        framePayment.getPaymentPanel().getComponent(4).addMouseListener(new java.awt.event.MouseAdapter() {
+//                           
+//           @Override
+//           public void mouseClicked(java.awt.event.MouseEvent evt) {
+//               if(!framePayment.getCustomerNamePanel().getCustomerName().isEmpty()){
+//                   framePayment.getCustomerNamePanel().getComponent(1).setEnabled(false);
+//                                   
+//                   String description = productCatalog.getItem(framePayment.getProductPanel().getSelectedUPC()).getDescription();
+//                   int quantity = framePayment.getProductPanel().getSelectedQuantity();
+//                   float price = productCatalog.getItem(framePayment.getProductPanel().getSelectedUPC()).getPrice();
+//                   framePayment.getInvoicePanel().setLineItem(description, quantity, price);
+//                   sale.addSaleLineItem(productCatalog.getItem(framePayment.getProductPanel().getSelectedUPC()), quantity);
+//                   
+//                   framePayment.getInvoicePanel().setTotalTextfield("$" + String.format("%.2f", sale.getSubtotal()));
+//                   
+//               } else {
+//                   framePayment.popUp();
+//               }
+//           }
+//       });
+        
     }
 }
 
