@@ -1,3 +1,27 @@
+import java.util.*;
+
+public class Sale{
+    private static Date date;
+    private HashMap<String, SaleLineItem> saleLineItems;
+    private Payment paymentType;
+    private float subtotal;
+    private float amountTendered;
+    
+    public Sale() {
+        saleLineItems = new HashMap<String, SaleLineItem>();
+        date = new Date();
+    }  
+    
+    public static Date getDate() {
+        return date;
+    }
+    
+    public void saveIntoDatabase(){
+        
+    }
+    
+}
+
 //import java.util.*;
 //
 ///* Author Peter Cruz */
