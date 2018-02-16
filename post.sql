@@ -5,7 +5,7 @@ DROP TABLE transactions;
 CREATE TABLE products(
   UPC varchar(4) NOT NULL,
   description varchar(20),
-  price DECIMAL(10,2),
+  price DECIMAL(8,2),
   PRIMARY KEY (UPC)
 );
 
@@ -13,7 +13,7 @@ CREATE TABLE transactions(
   transaction_id INTEGER NOT NULL,
   customer_name varchar(20),
   payment_type varchar(10),
-  money_paid DECIMAL(10,2),
+  money_paid DECIMAL(8,2),
   credit_card varchar(20),
   PRIMARY KEY (transaction_id)
 );
