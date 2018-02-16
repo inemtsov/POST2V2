@@ -41,9 +41,8 @@ public class PanelMediator
         return this.productCatalog.getItem(upc);
     }
     
-    public String calculateSubtotalForItem(Item item)
-    {
-        sale.calculateSubtotalforItem(item);
+    public String calculateSubtotalForItem(Item item){
+        return sale.calculateSubtotalForItem(item);
     }
     
     public void setName(String name)

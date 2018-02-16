@@ -14,16 +14,14 @@ public class PostFrame extends javax.swing.JFrame {
      * Creates new form PostFrame
      */
     
-    public PostFrame() 
-    {
+    public PostFrame() {
         initComponents();
         Sale s = new Sale();
         dateLabel.setText(s.getDate().toString());
     }
 
-    public CashPanel getCashPanel()
-    {
-        return this.cashPanel;
+    public CheckPanel getCheckPanel(){
+        return this.checkPanel1;
     }
     
     public ProductPanel getProductPanel()
