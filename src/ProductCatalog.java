@@ -20,7 +20,8 @@ public class ProductCatalog {
   private BufferedReader source;
   private HashMap<String, Item> products;
   private static ArrayList<String> listOfUPC = new ArrayList<String>();
-  public ProductCatalog( ) {
+  public ProductCatalog() 
+  {
       try{
             this.products = new HashMap<>();
             URL urlPersonName = new URL("http://localhost:8080/PostServer/webresources/com.postentity.products");
@@ -60,7 +61,8 @@ public class ProductCatalog {
         }
   }
 
-  public static String[] getAllUpc() throws IOException  {
+  public static String[] getAllUpc() throws IOException  
+  {
     //new ProductCatalog( "products.txt" );//temporray since manager is not setting this up
     String[] arr = new String[listOfUPC.size()];
     for(int i =0; i<arr.length; i++){
@@ -69,7 +71,8 @@ public class ProductCatalog {
     return arr;
   }
   
-  public Item getItem( String UPC ) {
+  public Item getItem( String UPC ) 
+  {
     return products.get( UPC );
   }
 }

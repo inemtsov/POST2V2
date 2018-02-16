@@ -7,19 +7,29 @@ public class Sale{
     private float subtotal;
     private float amountTendered;
     
-    public Sale() {
+    public Sale() 
+    {
         saleLineItems = new HashMap<String, SaleLineItem>();
         date = new Date();
     }  
     
-    public static Date getDate() {
+    public static Date getDate() 
+    {
         return date;
     }
     
-    public void saveIntoDatabase(){
+    /*
+        Payment is saved once the user clicks "pay" on the post.
+    */
+    public void saveIntoDatabase()
+    {
         
     }
     
+    public String calculateSubtotalForItem(Item item)
+    {
+        
+    }
 }
 
 //import java.util.*;

@@ -13,7 +13,8 @@ public class CustomerNamePanel extends javax.swing.JPanel {
     /**
      * Creates new form CustomerNamePanel
      */
-    public CustomerNamePanel() {
+    public CustomerNamePanel() 
+    {
         initComponents();
     }
 

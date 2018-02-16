@@ -24,16 +24,18 @@ import org.xml.sax.SAXException;
  *
  * @author Justin
  */
-public class Post{
-    
+
+public class Post
+{ 
     public static void main(String[] args) throws ParserConfigurationException, SAXException {
         ProductCatalog p = new ProductCatalog();
         
         java.awt.EventQueue.invokeLater(new Runnable() {
         public void run() {
-               
-        PostFrame framePayment =  new PostFrame();
-            framePayment.setVisible(true);
+              
+        PanelMediator panelMediator;
+        panelMediator = new PanelMediator(p); 
+       
         }
         });
     }

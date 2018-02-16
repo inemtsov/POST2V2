@@ -13,12 +13,29 @@ public class PostFrame extends javax.swing.JFrame {
     /**
      * Creates new form PostFrame
      */
-    public PostFrame() {
+    
+    public PostFrame() 
+    {
         initComponents();
         Sale s = new Sale();
         dateLabel.setText(s.getDate().toString());
     }
 
+    public CashPanel getCashPanel()
+    {
+        return this.cashPanel;
+    }
+    
+    public ProductPanel getProductPanel()
+    {
+        return this.productPanel1;
+    }
+        
+    public CustomerNamePanel getCustomerNamePanel()
+    {
+        return this.customerNamePanel1;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -168,7 +185,6 @@ public class PostFrame extends javax.swing.JFrame {
                 break;
             case 0:
                 textPayment.setText("Tendered amount: $");
-
                 //jPanel2.add(cashPanel1);
                 break;
         }
