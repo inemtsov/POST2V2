@@ -25,6 +25,10 @@ public class InvoicePanel extends javax.swing.JPanel {
        invoiceTable.setValueAt(quantity*unitPrice, currentRow, 3);
        currentRow++;
    }
+    
+    public void setTotalTextfield(String subtotal){
+        totalTextfield.setText(subtotal);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -38,6 +42,7 @@ public class InvoicePanel extends javax.swing.JPanel {
         invoiceScrollPane = new javax.swing.JScrollPane();
         invoiceTable = new javax.swing.JTable();
         totalPriceLabel = new javax.swing.JLabel();
+        totalTextfield = new javax.swing.JLabel();
 
         setBorder(javax.swing.BorderFactory.createTitledBorder("Invoice"));
 
@@ -100,7 +105,9 @@ public class InvoicePanel extends javax.swing.JPanel {
         ));
         invoiceScrollPane.setViewportView(invoiceTable);
 
-        totalPriceLabel.setText("TOTAL");
+        totalPriceLabel.setText("TOTAL      $");
+
+        totalTextfield.setText(" 0.00");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -110,15 +117,19 @@ public class InvoicePanel extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(totalPriceLabel)
-                .addGap(123, 123, 123))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(totalTextfield, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(invoiceScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(totalPriceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 6, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(totalPriceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(totalTextfield))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -127,5 +138,6 @@ public class InvoicePanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane invoiceScrollPane;
     private javax.swing.JTable invoiceTable;
     private javax.swing.JLabel totalPriceLabel;
+    private javax.swing.JLabel totalTextfield;
     // End of variables declaration//GEN-END:variables
 }

@@ -20,18 +20,21 @@ public class PanelMediator {
 
     public PanelMediator(ProductCatalog productCatalog){
         this.productCatalog = productCatalog; 
+        sale = new Sale();
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 framePayment = new PostFrame();
                 framePayment.setVisible(true);
-                setDate();
+                setDate();                
                 interactPanel();
             }
         });
     }
         
     public void setDate(){
-        framePayment.setSaleDate(new Date().toString());
+        Date date = new Date();
+        framePayment.setSaleDate(date.toString());
+        sale.setDate(date);
     }
     
     public void setProductCatalog(ProductCatalog productCatalog)
@@ -47,10 +50,6 @@ public class PanelMediator {
     public Item getItem(String upc)
     {
         return this.productCatalog.getItem(upc);
-    }
-    
-    public String calculateSubtotalForItem(Item item){
-        return sale.calculateSubtotalForItem(item);
     }
     
     public void setName(String name)
@@ -70,7 +69,9 @@ public class PanelMediator {
                    int quantity = framePayment.getProductPanel().getSelectedQuantity();
                    float price = productCatalog.getItem(framePayment.getProductPanel().getSelectedUPC()).getPrice();
                    framePayment.getInvoicePanel().setLineItem(description, quantity, price);
-
+                   sale.addSaleLineItem(productCatalog.getItem(framePayment.getProductPanel().getSelectedUPC()), quantity);
+                   
+                   framePayment.getInvoicePanel().setTotalTextfield(""+sale.getSubtotal());
                    
                } else {
                    framePayment.popUp();

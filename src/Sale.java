@@ -6,14 +6,73 @@ public class Sale{
     private Payment paymentType;
     private float subtotal;
     private float amountTendered;
+    private String customerName;
+    private float moneyChange;
     
     public Sale(){
         saleLineItems = new HashMap<String, SaleLineItem>();
-        date = new Date();
+        subtotal = 0.0f;
     }  
+    
+    public void setDate(Date date){
+        this.date = date;
+    }
     
     public static Date getDate(){
         return date;
+    }
+
+    public HashMap<String, SaleLineItem> getSaleLineItems() {
+        return saleLineItems;
+    }
+
+    public void setSaleLineItems(HashMap<String, SaleLineItem> saleLineItems) {
+        this.saleLineItems = saleLineItems;
+    }
+
+    public Payment getPaymentType() {
+        return paymentType;
+    }
+
+    public void setPaymentType(Payment paymentType) {
+        this.paymentType = paymentType;
+    }
+
+    public float getSubtotal() {
+        return subtotal;
+    }
+
+    public void setSubtotal(float subtotal) {
+        this.subtotal = subtotal;
+    }
+
+    public float getAmountTendered() {
+        return amountTendered;
+    }
+
+    public void setAmountTendered(float amountTendered) {
+        this.amountTendered = amountTendered;
+    }
+
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
+
+    public float getMoneyChange() {
+        return moneyChange;
+    }
+
+    public void setMoneyChange(float moneyChange) {
+        this.moneyChange = moneyChange;
+    }
+    
+    public void addSaleLineItem(Item item, int quantity) {
+        saleLineItems.put(item.getUPC(), new SaleLineItem(item, quantity));
+        subtotal += item.getPrice() * quantity;
     }
     
     /*
@@ -23,9 +82,6 @@ public class Sale{
         
     }
     
-    public String calculateSubtotalForItem(Item item){
-        return "";
-    }
 }
 
 //import java.util.*;

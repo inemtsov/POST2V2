@@ -27,7 +27,9 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
               <Component id="totalPriceLabel" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="123" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="totalTextfield" min="-2" pref="103" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -35,9 +37,12 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <Component id="invoiceScrollPane" min="-2" pref="428" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="totalPriceLabel" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                  <Component id="totalTextfield" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="totalPriceLabel" min="-2" pref="30" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="6" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -66,7 +71,12 @@
     </Container>
     <Component class="javax.swing.JLabel" name="totalPriceLabel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="TOTAL"/>
+        <Property name="text" type="java.lang.String" value="TOTAL      $"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="totalTextfield">
+      <Properties>
+        <Property name="text" type="java.lang.String" value=" 0.00"/>
       </Properties>
     </Component>
   </SubComponents>
