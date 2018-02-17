@@ -6,18 +6,20 @@ public class CreditCard extends Payment {
   private String cardNumber;
   private boolean transactionStatus;
 
-  public CreditCard( float amount, String cardNumber ) {
+  public CreditCard(float amount, String cardNumber) {
     super( amount );
     this.cardNumber = cardNumber;
     processCard();
   }
 
   private void processCard() {
-    if(cardNumber.length() == 5) {
-      transactionStatus = true;
+      
+    double random = Math.random();
+    if(random<=0.1){
+       transactionStatus = false;
     }
     else{
-      transactionStatus = false;
+       transactionStatus = true;
     }
   }
 

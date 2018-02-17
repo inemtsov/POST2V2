@@ -73,37 +73,73 @@ public class PanelMediator {
                    framePayment.getInvoicePanel().setTotalTextfield("$" + String.format("%.2f", sale.getSubtotal()));
                    
                } else {
-                   framePayment.popUp();
+                   framePayment.popUpCustomerName();
                }
            }
        });
   
-//        System.out.println( framePayment.getPaymentPanel().getComponent(0).toString());
-//       // System.out.println( framePayment.getPaymentPanel().getComponent(2).toString());
-//        System.out.println( framePayment.getPaymentPanel().getComponent(3).toString());
-//        System.out.println( framePayment.getPaymentPanel().getComponent(4).toString());
-//        System.out.println( framePayment.getPaymentPanel().getComponent(5).toString());
 
-//        framePayment.getPaymentPanel().getComponent(4).addMouseListener(new java.awt.event.MouseAdapter() {
-//                           
-//           @Override
-//           public void mouseClicked(java.awt.event.MouseEvent evt) {
-//               if(!framePayment.getCustomerNamePanel().getCustomerName().isEmpty()){
-//                   framePayment.getCustomerNamePanel().getComponent(1).setEnabled(false);
-//                                   
-//                   String description = productCatalog.getItem(framePayment.getProductPanel().getSelectedUPC()).getDescription();
-//                   int quantity = framePayment.getProductPanel().getSelectedQuantity();
-//                   float price = productCatalog.getItem(framePayment.getProductPanel().getSelectedUPC()).getPrice();
-//                   framePayment.getInvoicePanel().setLineItem(description, quantity, price);
-//                   sale.addSaleLineItem(productCatalog.getItem(framePayment.getProductPanel().getSelectedUPC()), quantity);
-//                   
-//                   framePayment.getInvoicePanel().setTotalTextfield("$" + String.format("%.2f", sale.getSubtotal()));
-//                   
-//               } else {
-//                   framePayment.popUp();
-//               }
-//           }
-//       });
+        framePayment.getPaymentPanel().getComponent(2).addMouseListener(new java.awt.event.MouseAdapter() {
+                           
+           @Override
+           public void mouseClicked(java.awt.event.MouseEvent evt) {
+               if(framePayment.getCustomerNamePanel().getCustomerName().isEmpty()){
+                  framePayment.popUpCustomerName(); 
+               } 
+               else if(framePayment.getPaymentPanel().getPaymentTextfield().isEmpty()){
+                   framePayment.popUpPaymentInfo();
+               }    
+               else {
+                   if(sale.getSaleLineItems().isEmpty()){
+                       framePayment.popUpEmptyCart();
+                   }
+                   else{
+                       switch(framePayment.getPaymentPanel().getSelectedPaymentType()){
+                          
+                           case "Cash":
+                               if(Float.parseFloat(framePayment.getPaymentPanel().getPaymentTextfield())<sale.getSubtotal()){
+                                    framePayment.popUpPaymentRejected();
+                               }
+                               else{
+                                   Cash pay = new Cash(sale.getSubtotal(), Float.parseFloat(framePayment.getPaymentPanel().getPaymentTextfield()));
+                                   framePayment.popUpCashChange("Your change is $"+pay.getChange());
+                                   saleCompleted();
+                               }
+                            break;
+                           case "Check":
+                               Check check = new Check(sale.getSubtotal(), framePayment.getPaymentPanel().getPaymentTextfield());
+                               if(!check.isApproved()){
+                                    framePayment.popUpCheckRejected();
+                               }
+                               else{
+                                   saleCompleted();
+                               }
+                            break;
+                           case "Credit Card":
+                               CreditCard credit = new CreditCard(sale.getSubtotal(), framePayment.getPaymentPanel().getPaymentTextfield());
+                               if(!credit.isApproved()){
+                                    framePayment.popUpCreditCardRejected();
+                               }
+                               else{
+                                   saleCompleted();
+                               }
+                            break;
+                       }
+                   }
+               }
+           }
+       });
+        
+    }
+    
+    public void saleCompleted(){
+        framePayment.popUpSaleCompleted();
+        sale.setPaymentType(framePayment.getPaymentPanel().getSelectedPaymentType());
+        sale.setCustomerName(framePayment.getCustomerNamePanel().getCustomerName());
+        
+        //save sale info
+        //send data into database
+        //reset everything to blank
         
     }
 }

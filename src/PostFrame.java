@@ -15,8 +15,36 @@ public class PostFrame extends javax.swing.JFrame {
         initComponents();
     }
 
-    public void popUp() {
+    public void popUpCustomerName() {
         JOptionPane.showMessageDialog(null, "Please enter Customer Name");
+    }
+    
+    public void popUpPaymentInfo() {
+        JOptionPane.showMessageDialog(null, "Payment field is not completed");
+    }
+    
+    public void popUpCashChange(String change) {
+        JOptionPane.showMessageDialog(null, change);
+    }
+
+    public void popUpPaymentRejected() {
+        JOptionPane.showMessageDialog(null, "The payment is not correct");
+    }
+    
+    public void popUpCheckRejected() {
+        JOptionPane.showMessageDialog(null, "Check number is not accepted");
+    }
+    
+    public void popUpCreditCardRejected() {
+        JOptionPane.showMessageDialog(null, "Credit Card number is not accepted");
+    }
+        
+    public void popUpSaleCompleted() {
+        JOptionPane.showMessageDialog(null, "The sale was completed");
+    }
+    
+    public void popUpEmptyCart() {
+        JOptionPane.showMessageDialog(null, "Your cart is empty");
     }
 
     public void setSaleDate(String date) {
@@ -48,7 +76,6 @@ public class PostFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        checkPanel1 = new CheckPanel();
         dateLabel = new javax.swing.JLabel();
         productPanel1 = new ProductPanel();
         invoicePanel2 = new InvoicePanel();
@@ -67,7 +94,7 @@ public class PostFrame extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(64, 64, 64)
                         .addComponent(dateLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 203, Short.MAX_VALUE)
                         .addComponent(paymentPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
@@ -75,7 +102,7 @@ public class PostFrame extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(16, 16, 16)
                         .addComponent(customerNamePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(productPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -106,7 +133,6 @@ public class PostFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private CheckPanel checkPanel1;
     private CustomerNamePanel customerNamePanel1;
     private javax.swing.JLabel dateLabel;
     private InvoicePanel invoicePanel2;
