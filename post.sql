@@ -10,7 +10,7 @@ CREATE TABLE products(
 );
 
 CREATE TABLE transactions(
-  transaction_id INTEGER NOT NULL,
+  transaction_id INTEGER NOT NULL AUTO_INCREMENT,
   customer_name varchar(20),
   payment_type varchar(10),
   money_paid DECIMAL(8,2),

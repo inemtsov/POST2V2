@@ -1,6 +1,4 @@
-import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
-import java.io.FileReader;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -15,9 +13,7 @@ import org.w3c.dom.NodeList;
 /* Author Ilya Nemtsov */
 
 public class ProductCatalog {
-
-  private String line;
-  private BufferedReader source;
+    
   private HashMap<String, Item> products;
   private static ArrayList<String> listOfUPC = new ArrayList<String>();
   public ProductCatalog() 

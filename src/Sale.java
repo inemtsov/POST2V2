@@ -3,7 +3,7 @@ import java.util.*;
 public class Sale{
     private static Date date;
     private HashMap<String, SaleLineItem> saleLineItems;
-    private Payment paymentType;
+    private String paymentType;
     private float subtotal;
     private float amountTendered;
     private String customerName;
@@ -30,11 +30,11 @@ public class Sale{
         this.saleLineItems = saleLineItems;
     }
 
-    public Payment getPaymentType() {
+    public String getPaymentType() {
         return paymentType;
     }
 
-    public void setPaymentType(Payment paymentType) {
+    public void setPaymentType(String paymentType) {
         this.paymentType = paymentType;
     }
 

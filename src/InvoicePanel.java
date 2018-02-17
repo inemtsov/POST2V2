@@ -1,9 +1,13 @@
+
+import java.awt.ComponentOrientation;
+import javax.swing.JLabel;
+import javax.swing.table.DefaultTableCellRenderer;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author PeterJayCruz
@@ -11,22 +15,31 @@
 public class InvoicePanel extends javax.swing.JPanel {
 
     private int currentRow = 0;
+
     /**
      * Creates new form InvoicePanel
      */
     public InvoicePanel() {
         initComponents();
+        invoiceTable.setEnabled(false);
+
+        DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();
+        rightRenderer.setHorizontalAlignment(JLabel.RIGHT);
+        invoiceTable.getColumnModel().getColumn(1).setCellRenderer(rightRenderer);
+        invoiceTable.getColumnModel().getColumn(2).setCellRenderer(rightRenderer);
+        invoiceTable.getColumnModel().getColumn(3).setCellRenderer(rightRenderer);
+
     }
-    
+
     public void setLineItem(String UPC, int quantity, float unitPrice) {
-       invoiceTable.setValueAt(UPC, currentRow, 0);
-       invoiceTable.setValueAt(quantity, currentRow, 1);
-       invoiceTable.setValueAt(unitPrice, currentRow, 2);
-       invoiceTable.setValueAt(quantity*unitPrice, currentRow, 3);
-       currentRow++;
-   }
-    
-    public void setTotalTextfield(String subtotal){
+        invoiceTable.setValueAt(UPC, currentRow, 0);
+        invoiceTable.setValueAt(quantity, currentRow, 1);
+        invoiceTable.setValueAt(unitPrice, currentRow, 2);
+        invoiceTable.setValueAt(quantity * unitPrice, currentRow, 3);
+        currentRow++;
+    }
+
+    public void setTotalTextfield(String subtotal) {
         totalTextfield.setText(subtotal);
     }
 
@@ -105,9 +118,9 @@ public class InvoicePanel extends javax.swing.JPanel {
         ));
         invoiceScrollPane.setViewportView(invoiceTable);
 
-        totalPriceLabel.setText("TOTAL      $");
+        totalPriceLabel.setText("TOTAL  ");
 
-        totalTextfield.setText(" 0.00");
+        totalTextfield.setText(" $0.00");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -117,9 +130,9 @@ public class InvoicePanel extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(totalPriceLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(totalTextfield, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22))
+                .addGap(18, 18, 18)
+                .addComponent(totalTextfield, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

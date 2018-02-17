@@ -1,6 +1,5 @@
 
 import java.util.Date;
-import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -71,13 +70,77 @@ public class PanelMediator {
                    framePayment.getInvoicePanel().setLineItem(description, quantity, price);
                    sale.addSaleLineItem(productCatalog.getItem(framePayment.getProductPanel().getSelectedUPC()), quantity);
                    
-                   framePayment.getInvoicePanel().setTotalTextfield(""+sale.getSubtotal());
+                   framePayment.getInvoicePanel().setTotalTextfield("$" + String.format("%.2f", sale.getSubtotal()));
                    
                } else {
-                   framePayment.popUp();
+                   framePayment.popUpCustomerName();
                }
            }
        });
+  
+
+        framePayment.getPaymentPanel().getComponent(2).addMouseListener(new java.awt.event.MouseAdapter() {
+                           
+           @Override
+           public void mouseClicked(java.awt.event.MouseEvent evt) {
+               if(framePayment.getCustomerNamePanel().getCustomerName().isEmpty()){
+                  framePayment.popUpCustomerName(); 
+               } 
+               else if(framePayment.getPaymentPanel().getPaymentTextfield().isEmpty()){
+                   framePayment.popUpPaymentInfo();
+               }    
+               else {
+                   if(sale.getSaleLineItems().isEmpty()){
+                       framePayment.popUpEmptyCart();
+                   }
+                   else{
+                       switch(framePayment.getPaymentPanel().getSelectedPaymentType()){
+                          
+                           case "Cash":
+                               if(Float.parseFloat(framePayment.getPaymentPanel().getPaymentTextfield())<sale.getSubtotal()){
+                                    framePayment.popUpPaymentRejected();
+                               }
+                               else{
+                                   Cash pay = new Cash(sale.getSubtotal(), Float.parseFloat(framePayment.getPaymentPanel().getPaymentTextfield()));
+                                   framePayment.popUpCashChange("Your change is $"+pay.getChange());
+                                   saleCompleted();
+                               }
+                            break;
+                           case "Check":
+                               Check check = new Check(sale.getSubtotal(), framePayment.getPaymentPanel().getPaymentTextfield());
+                               if(!check.isApproved()){
+                                    framePayment.popUpCheckRejected();
+                               }
+                               else{
+                                   saleCompleted();
+                               }
+                            break;
+                           case "Credit Card":
+                               CreditCard credit = new CreditCard(sale.getSubtotal(), framePayment.getPaymentPanel().getPaymentTextfield());
+                               if(!credit.isApproved()){
+                                    framePayment.popUpCreditCardRejected();
+                               }
+                               else{
+                                   saleCompleted();
+                               }
+                            break;
+                       }
+                   }
+               }
+           }
+       });
+        
+    }
+    
+    public void saleCompleted(){
+        framePayment.popUpSaleCompleted();
+        sale.setPaymentType(framePayment.getPaymentPanel().getSelectedPaymentType());
+        sale.setCustomerName(framePayment.getCustomerNamePanel().getCustomerName());
+        
+        //save sale info
+        //send data into database
+        //reset everything to blank
+        
     }
 }
 

@@ -4,20 +4,14 @@
 public class Payment {
   private float amount;
   private String paymentType;
-  private String creditCardNumber;
 
 
   public Payment(float amount){
-
+    this.amount = amount;
   }
 
   public Payment(float amount, String paymentType) {
     this.amount = amount;
-    this.paymentType = paymentType;
-  }
-
-  public Payment(String paymentType, String creditCardNumber){
-    this.creditCardNumber = creditCardNumber;
     this.paymentType = paymentType;
   }
 
@@ -41,11 +35,4 @@ public class Payment {
     this.paymentType = paymentType;
   }
 
-  public String getCreditCardNumber() {
-    return creditCardNumber;
-  }
-
-  public void setCreditCardNumber(String creditCardNumber) {
-    this.creditCardNumber = creditCardNumber;
-  }
 }
