@@ -2,7 +2,6 @@
 
 public class CreditCard extends Payment {
 
-  private float tenderedAmount;
   private String cardNumber;
   private boolean transactionStatus;
 

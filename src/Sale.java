@@ -82,6 +82,17 @@ public class Sale{
         
     }
     
+    @Override
+    public String toString(){
+     String s="";
+     for (Map.Entry<String, SaleLineItem> entry : saleLineItems.entrySet()) {
+            String key = entry.getKey();
+            SaleLineItem value = entry.getValue();
+            s+="<html>"+key + " " + value.getItem().getDescription() + " " + value.getQuantity()+ " @ $"+ value.getItem().getPrice() +"<br><br>";
+     }
+     return s;
+    }
+    
 }
 
 //import java.util.*;

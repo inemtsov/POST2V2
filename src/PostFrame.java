@@ -15,14 +15,30 @@ public class PostFrame extends javax.swing.JFrame {
         initComponents();
     }
 
+    public void setInvoicePanel(InvoicePanel IP) {
+        this.invoicePanel2 = IP;
+    }
+
+    public void setPaymentPanel(PaymentPanel PP) {
+        this.paymentPanel1 = PP;
+    }
+
+    public void setCustomerNamePanel(CustomerNamePanel CNP) {
+        this.customerNamePanel1 = CNP;
+    }
+
+    public void setProductPanel(ProductPanel PP) {
+        this.productPanel1 = PP;
+    }
+
     public void popUpCustomerName() {
         JOptionPane.showMessageDialog(null, "Please enter Customer Name");
     }
-    
+
     public void popUpPaymentInfo() {
         JOptionPane.showMessageDialog(null, "Payment field is not completed");
     }
-    
+
     public void popUpCashChange(String change) {
         JOptionPane.showMessageDialog(null, change);
     }
@@ -30,19 +46,20 @@ public class PostFrame extends javax.swing.JFrame {
     public void popUpPaymentRejected() {
         JOptionPane.showMessageDialog(null, "The payment is not correct");
     }
-    
+
+       
     public void popUpCheckRejected() {
         JOptionPane.showMessageDialog(null, "Check number is not accepted");
     }
-    
+
     public void popUpCreditCardRejected() {
         JOptionPane.showMessageDialog(null, "Credit Card number is not accepted");
     }
-        
+
     public void popUpSaleCompleted() {
         JOptionPane.showMessageDialog(null, "The sale was completed");
     }
-    
+
     public void popUpEmptyCart() {
         JOptionPane.showMessageDialog(null, "Your cart is empty");
     }

@@ -18,6 +18,11 @@ public class CustomerNamePanel extends javax.swing.JPanel {
         initComponents();
     }
     
+    public void reset(){
+       customerNameText.setText(null);
+       customerNameText.setEnabled(true);
+   }
+    
     public String getCustomerName(){
         return customerNameText.getText();
     }
