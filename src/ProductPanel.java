@@ -6,7 +6,6 @@ import java.io.IOException;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author leirelitwin
@@ -18,19 +17,24 @@ public class ProductPanel extends javax.swing.JPanel {
      */
     public ProductPanel() {
         initComponents();
-        try{
+        try {
             UPCSelector.setModel(new javax.swing.DefaultComboBoxModel<>(ProductCatalog.getAllUpc()));
-        } catch(Exception e){
+        } catch (Exception e) {
             System.out.print(e);
         }
     }
-    
-    public String getSelectedUPC(){
+
+    public String getSelectedUPC() {
         return UPCSelector.getItemAt(UPCSelector.getSelectedIndex());
     }
+
+    public int getSelectedQuantity() {
+        return quantitySelector.getSelectedIndex() + 1;
+    }
     
-    public int getSelectedQuantity(){
-        return quantitySelector.getSelectedIndex()+1;
+    public void reset() {
+        UPCSelector.setSelectedIndex(0);
+        quantitySelector.setSelectedIndex(0);
     }
 
     /**
@@ -108,7 +112,7 @@ public class ProductPanel extends javax.swing.JPanel {
 
     private void AddProductButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddProductButtonActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_AddProductButtonActionPerformed
 
 

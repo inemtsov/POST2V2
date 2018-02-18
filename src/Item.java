@@ -45,8 +45,6 @@ public class Item {
     this.description = description;
   }
 
-
-
   @Override
   public String toString() {
     return getUPC() + " " + getDescription() + " " + getPrice();

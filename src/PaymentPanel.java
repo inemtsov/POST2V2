@@ -25,6 +25,12 @@ public class PaymentPanel extends javax.swing.JPanel {
         return paymentTypeDropDownMenu.getItemAt(paymentTypeDropDownMenu.getSelectedIndex());
     }
     
+    public void reset(){
+        areaPayment.setText(null);
+        paymentTypeDropDownMenu.setSelectedIndex(0);
+        textPayment.setText("Tendered amount: $");
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -120,8 +126,7 @@ public class PaymentPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    
-    
+   
     private void payButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_payButtonActionPerformed
@@ -139,7 +144,6 @@ public class PaymentPanel extends javax.swing.JPanel {
             textPayment.setText("Tendered amount: $");
             break;
         }
-
     }//GEN-LAST:event_paymentTypeDropDownMenuActionPerformed
 
     private void areaPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_areaPaymentActionPerformed

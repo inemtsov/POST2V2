@@ -31,6 +31,18 @@ public class InvoicePanel extends javax.swing.JPanel {
 
     }
 
+    
+    public void reset(){
+       for(int i = 0; i < currentRow; i++){
+           invoiceTable.setValueAt(null, i, 0);
+           invoiceTable.setValueAt(null, i, 1);
+           invoiceTable.setValueAt(null, i, 2);
+           invoiceTable.setValueAt(null, i, 3);
+       }
+       totalTextfield.setText("$0.00");
+       currentRow = 0;
+   }
+    
     public void setLineItem(String UPC, int quantity, float unitPrice) {
         invoiceTable.setValueAt(UPC, currentRow, 0);
         invoiceTable.setValueAt(quantity, currentRow, 1);
