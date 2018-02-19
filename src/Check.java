@@ -2,28 +2,12 @@
 
 public class Check extends Payment {
 
-  private String checkNumber;
+  private float checkAmount;
   private boolean transactionStatus;
 
-  public Check(float amount, String checkNumber) {
+  public Check(float amount, float checkAmount) {
     super( amount );
-    this.checkNumber = checkNumber;
-    processCheck();
-  }
-  
-  private void processCheck() {
-      
-    double random = Math.random();
-    if(random<=0.1){
-       transactionStatus = false;
-    }
-    else{
-       transactionStatus = true;
-    }
-  }
-
-  public boolean isApproved() {
-    return transactionStatus;
+    this.checkAmount = checkAmount;
   }
 
 }

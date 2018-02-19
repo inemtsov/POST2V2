@@ -49,7 +49,7 @@ public class PostFrame extends javax.swing.JFrame {
 
        
     public void popUpCheckRejected() {
-        JOptionPane.showMessageDialog(null, "Check number is not accepted");
+        JOptionPane.showMessageDialog(null, "Check amount doesn't match subtotal amount");
     }
 
     public void popUpCreditCardRejected() {

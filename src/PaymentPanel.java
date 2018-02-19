@@ -135,7 +135,7 @@ public class PaymentPanel extends javax.swing.JPanel {
     
         switch(paymentTypeDropDownMenu.getSelectedIndex()){
             case 1:
-            textPayment.setText("Check routing #:");
+            textPayment.setText("Check amount #:");
             break;
             case 2:
             textPayment.setText("Credit card #:");

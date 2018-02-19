@@ -8,17 +8,19 @@ public class Sale{
     private float amountTendered;
     private String customerName;
     private float moneyChange;
+    private int numberOfLineItems;
     
     public Sale(){
-        saleLineItems = new HashMap<String, SaleLineItem>();
+        saleLineItems = new HashMap<>();
         subtotal = 0.0f;
+        numberOfLineItems = 0;
     }  
     
     public void setDate(Date date){
         this.date = date;
     }
     
-    public static Date getDate(){
+    public Date getDate(){
         return date;
     }
 
@@ -71,7 +73,8 @@ public class Sale{
     }
     
     public void addSaleLineItem(Item item, int quantity) {
-        saleLineItems.put(item.getUPC(), new SaleLineItem(item, quantity));
+        numberOfLineItems += 1;
+        saleLineItems.put(Integer.toString(numberOfLineItems), new SaleLineItem(item, quantity));
         subtotal += item.getPrice() * quantity;
     }
     
@@ -86,9 +89,8 @@ public class Sale{
     public String toString(){
      String s="";
      for (Map.Entry<String, SaleLineItem> entry : saleLineItems.entrySet()) {
-            String key = entry.getKey();
             SaleLineItem value = entry.getValue();
-            s+="<html>"+key + " " + value.getItem().getDescription() + " " + value.getQuantity()+ " @ $"+ value.getItem().getPrice() +"<br><br>";
+            s+="<html>" + value.getItem().getDescription() + " " + value.getQuantity()+ " @ $"+ String.format("%.2f", value.getItem().getPrice()) +"<br>";
      }
      return s;
     }
