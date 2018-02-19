@@ -17,13 +17,7 @@ public class Cash extends Payment {
   }
 
   private void calculateChange() {
-    float calculatedChange = tenderedAmount - amount;
-    if(calculatedChange >= 0) {
-      change = calculatedChange;
-    }
-    else{
-      change = -1.0f;
-    }
+      change = tenderedAmount - amount;
   }
 
   public float getChange() {

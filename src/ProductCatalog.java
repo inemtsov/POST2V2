@@ -38,18 +38,14 @@ public class ProductCatalog {
             DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
             Document doc = builder.parse(new ByteArrayInputStream(bytes));
             NodeList products = doc.getElementsByTagName("products");
-            System.out.println();
-            System.out.println(products.getLength());
             
             for(int i = 0; i < products.getLength(); i++){
                 Element element = (Element)products.item(i);
                 String upc = element.getElementsByTagName("upc").item(0).getTextContent();
                 String description = element.getElementsByTagName("description").item(0).getTextContent();
                 String price = element.getElementsByTagName("price").item(0).getTextContent();
-                System.out.println(upc + " " + description + " " + price);
                 this.products.put(upc, new Item(upc, description, Float.parseFloat(price)));
                 this.listOfUPC.add(upc);
-
             }
         }
         catch(Exception e){

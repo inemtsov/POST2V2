@@ -111,7 +111,7 @@ public class PanelMediator {
                                         framePayment.popUpPaymentRejected();
                                     } else {
                                         Cash pay = new Cash(sale.getSubtotal(), Float.parseFloat(framePayment.getPaymentPanel().getPaymentTextfield()));
-                                        framePayment.popUpCashChange("Your change is $" + pay.getChange());
+                                        framePayment.popUpCashChange("Your change is $" + String.format("%.2f", pay.getChange()));
                                         saleCompleted();
                                     }
                                 } catch (NumberFormatException e) {
@@ -120,14 +120,16 @@ public class PanelMediator {
 
                                 break;
                             case "Check":
-                                if (framePayment.getPaymentPanel().getPaymentTextfield().matches("[0-9]+")) {
-                                    Check check = new Check(sale.getSubtotal(), framePayment.getPaymentPanel().getPaymentTextfield());
-                                    if (!check.isApproved()) {
-                                        framePayment.popUpCheckRejected();
+                                try {
+                                    Float.parseFloat(framePayment.getPaymentPanel().getPaymentTextfield());
+
+                                    if (Float.parseFloat(framePayment.getPaymentPanel().getPaymentTextfield()) != sale.getSubtotal()) {
+                                        framePayment.popUpPaymentRejected();
                                     } else {
+                                        new Check(sale.getSubtotal(), Float.parseFloat(framePayment.getPaymentPanel().getPaymentTextfield()));
                                         saleCompleted();
                                     }
-                                } else {
+                                } catch (NumberFormatException e) {
                                     framePayment.popUpPaymentRejected();
                                 }
                                 break;
@@ -163,22 +165,22 @@ public class PanelMediator {
         reset();
         startNewSale();
     }
-     
+
     public void printTransaction() {
         String s = sale.toString();
-        System.out.print(s);
-        String transaction =
-                "<html><body width = 275, length = 1800 ><h1>SFSU BookStore<br><br>"+ 
-                "<p>" + sale.getCustomerName()+ "<br><br>"  + 
-                 s + "<br><br>"+
-                "<p>" +"--------------"+"<br><br>"+
-                "<p>" +sale.getSubtotal()+"<br><br>"+
-                "<p>" +sale.getPaymentType()+"<br><br>"+
-                "<p>" +sale.getDate().toString() +"<br><br>";
-             
+        String transaction
+                = "<html><body width = 275, length = 1800><h1>1st Store<br><br>"
+                + "<p>" + "<h3>Customer Name: " + sale.getCustomerName() + "<br><br> "
+                + "<p>" + "List of products:<br>"
+                + "<p>" + "-----------------" + "<br>"
+                + s + "<br>"
+                + "<p>" + "-----------------" + "<br><br>"
+                + "<p>" + "Subtotal: $" + String.format("%.2f", sale.getSubtotal()) + "<br><br>"
+                + "<p>" + "Payment type: " + sale.getPaymentType() + "<br><br>"
+                + "<p>" + "Sale date: " + sale.getDate().toString() + "<br><br>";
 
-       JOptionPane.showMessageDialog(null, transaction);
+        JOptionPane.showMessageDialog(null, transaction, "transaction reciept", JOptionPane.PLAIN_MESSAGE);
 
     }
-    
+
 }
