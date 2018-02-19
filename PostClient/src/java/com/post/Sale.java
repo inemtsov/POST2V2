@@ -30,7 +30,7 @@ public class Sale
     private float amountTendered;
     private String customerName;
     private float moneyChange;
-    private static int transactionId = 5;
+    private static int transactionId = 10;
     
     public Sale()
     {
