@@ -6,3 +6,9 @@ README.md
 build.xml
 manifest.mf
 /build/*
+/PostServer/nbproject/private/
+/PostServer/dist/
+/PostServer/build/
+/PostClient/nbproject/private/
+/PostClient/build/
+/PostClient/dist/
