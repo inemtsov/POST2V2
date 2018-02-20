@@ -111,6 +111,7 @@ public class PanelMediator {
                                         framePayment.popUpPaymentRejected();
                                     } else {
                                         Cash pay = new Cash(sale.getSubtotal(), Float.parseFloat(framePayment.getPaymentPanel().getPaymentTextfield()));
+                                        sale.setAmountTendered(pay.getTenderedAmount());
                                         framePayment.popUpCashChange("Your change is $" + String.format("%.2f", pay.getChange()));
                                         saleCompleted();
                                     }

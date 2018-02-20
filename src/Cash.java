@@ -23,4 +23,8 @@ public class Cash extends Payment {
   public float getChange() {
     return change;
   }
+
+  public float getTenderedAmount() {
+    return tenderedAmount;
+  }
 }

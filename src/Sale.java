@@ -29,7 +29,7 @@ public class Sale{
     private String customerName;
     private float moneyChange;
     private int numberOfLineItems;
-    private int transactionId = 0;
+    private int transactionId;
 
     public Sale(){
         saleLineItems = new HashMap<>();
