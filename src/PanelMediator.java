@@ -127,7 +127,8 @@ public class PanelMediator {
                                     if (Float.parseFloat(framePayment.getPaymentPanel().getPaymentTextfield()) != sale.getSubtotal()) {
                                         framePayment.popUpPaymentRejected();
                                     } else {
-                                        new Check(sale.getSubtotal(), Float.parseFloat(framePayment.getPaymentPanel().getPaymentTextfield()));
+                                        Check check = new Check(sale.getSubtotal(), Float.parseFloat(framePayment.getPaymentPanel().getPaymentTextfield()));
+                                        sale.setAmountTendered(check.getCheckAmount());
                                         saleCompleted();
                                     }
                                 } catch (NumberFormatException e) {
