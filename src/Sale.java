@@ -29,12 +29,14 @@ public class Sale{
     private String customerName;
     private float moneyChange;
     private int numberOfLineItems;
-    private static int transactionId = 10;
+    private int transactionId = 0;
 
     public Sale(){
         saleLineItems = new HashMap<>();
         subtotal = 0.0f;
         numberOfLineItems = 0;
+        transactionId = (int) (System.currentTimeMillis() & 0xfffffff);
+        // System.out.println("ID = " + transactionId);
     }
 
     public void setDate(Date date){
