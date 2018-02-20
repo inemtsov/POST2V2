@@ -1,6 +1,26 @@
 import java.util.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class Sale{
+
+    private static final String XML_DECLARATION = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
+    private static final String ROOT_ELEMENT_BEGIN = "<transactions>";
+    private static final String ROOT_ELEMENT_END = "</transactions>";
+    private static final String CUSTOMER_NAME_BEGIN = "<customerName>";
+    private static final String CUSTOMER_NAME_END = "</customerName>";
+    private static final String MONEY_PAID_BEGIN = "<moneyPaid>";
+    private static final String MONEY_PAID_END = "</moneyPaid>";
+    private static final String PAYMENT_TYPE_BEGIN = "<paymentType>";
+    private static final String PAYMENT_TYPE_END = "</paymentType>";
+    private static final String TRANSACTION_ID_BEGIN = "<transactionId>";
+    private static final String TRANSACTION_ID_END = "</transactionId>";
+
     private static Date date;
     private HashMap<String, SaleLineItem> saleLineItems;
     private String paymentType;
@@ -9,17 +29,18 @@ public class Sale{
     private String customerName;
     private float moneyChange;
     private int numberOfLineItems;
-    
+    private static int transactionId = 10;
+
     public Sale(){
         saleLineItems = new HashMap<>();
         subtotal = 0.0f;
         numberOfLineItems = 0;
-    }  
-    
+    }
+
     public void setDate(Date date){
         this.date = date;
     }
-    
+
     public Date getDate(){
         return date;
     }
@@ -71,20 +92,77 @@ public class Sale{
     public void setMoneyChange(float moneyChange) {
         this.moneyChange = moneyChange;
     }
-    
+
     public void addSaleLineItem(Item item, int quantity) {
         numberOfLineItems += 1;
         saleLineItems.put(Integer.toString(numberOfLineItems), new SaleLineItem(item, quantity));
         subtotal += item.getPrice() * quantity;
     }
-    
+
     /*
         Payment is saved once the user clicks "pay" on the post.
     */
     public void saveIntoDatabase(){
-        
+      try
+{
+  //Attempts to connect to the server.
+  // URL urlPerson = new URL("http://localhost:8080/PostClient/webresources/com.postentity.transactions");
+  URL urlPerson = new URL("http://localhost:8080/PostServer/webresources/com.postentity.transactions");
+  HttpURLConnection postConnPerson = (HttpURLConnection) urlPerson.openConnection();
+  postConnPerson.setDoOutput(true);
+  postConnPerson.setRequestMethod("POST");
+  postConnPerson.setRequestProperty("Content-Type", "application/xml");
+
+  //Concatenate new transaction.xml string in the formal shown below.
+
+  /*
+  <?xml version="1.0" encoding="UTF-8"?>
+  <transactions>
+      <customerName>Leire Litwin</customerName>
+      <moneyPaid>8</moneyPaid>
+      <paymentType>CHECK</paymentType>
+      <transactionId>3</transactionId>
+  </transactions>
+  */
+
+  String newTransaction =
+                 XML_DECLARATION + "\n"
+          +      ROOT_ELEMENT_BEGIN + "\n"
+          +      CUSTOMER_NAME_BEGIN + customerName + CUSTOMER_NAME_END + "\n"
+          +      MONEY_PAID_BEGIN + amountTendered + MONEY_PAID_END + "\n"
+          +      PAYMENT_TYPE_BEGIN + paymentType + PAYMENT_TYPE_END + "\n"
+           +      TRANSACTION_ID_BEGIN + transactionId + TRANSACTION_ID_END + "\n"
+          +      ROOT_ELEMENT_END;
+
+  System.out.println(newTransaction);
+  OutputStream postOutputStream = postConnPerson.getOutputStream();
+  postOutputStream.write(newTransaction.getBytes());
+  postOutputStream.flush();
+
+  //Throws runtimeException if error code is 400 or greater
+  if (postConnPerson.getResponseCode() >= 400) {
+      throw new RuntimeException("Failed : HTTP error code : "
+              + postConnPerson.getResponseCode());
+  }
+
+  //Prints out response from the server, then disconnects
+  String output = "";
+  BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(
+          (postConnPerson.getInputStream())));
+  System.out.println("Output from Server .... \n");
+  while ((output = bufferedReader.readLine()) != null)
+  {
+      System.out.println(output);
+  }
+  postConnPerson.disconnect();
+
+} catch (MalformedURLException e) {
+  e.printStackTrace();
+} catch (IOException e) {
+  e.printStackTrace();
+}
     }
-    
+
     @Override
     public String toString(){
      String s="";
@@ -94,7 +172,7 @@ public class Sale{
      }
      return s;
     }
-    
+
 }
 
 //import java.util.*;
@@ -116,8 +194,8 @@ public class Sale{
 //    saleLineItems = new HashMap<String, SaleLineItem>();
 //    date = new Date();
 //    subtotal = 0.0f;
-//    
-//  }  
+//
+//  }
 //  public void addSaleLineItem(String upc, int quantity) {
 //    Item item = store.getItemFromProductCatalog(upc);
 //    saleLineItems.put(upc, new SaleLineItem(item, quantity));
@@ -271,5 +349,3 @@ public class Sale{
 //
 //
 //}
-
-
