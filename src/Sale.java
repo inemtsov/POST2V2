@@ -23,6 +23,13 @@ public class Sale{
     private static final String CREDIT_CARD_NUMBER_BEGIN = "<creditCard>";
     private static final String CREDIT_CARD_NUMBER_END = "</creditCard>";
 
+    private static final String ITEM_TRANSACTION_BEGIN = "<itemTransaction>";
+    private static final String ITEM_TRANSACTION_END = "</itemTransaction>";
+    private static final String UPC_BEGIN = "<upc>";
+    private static final String UPC_END = "</upc>";
+    private static final String QUANTITY_BEGIN = "</quantity>";
+    private static final String QUANTITY_END = "</quantity>";
+
     private static Date date;
     private HashMap<String, SaleLineItem> saleLineItems;
     private String paymentType;
@@ -126,7 +133,7 @@ public class Sale{
         postConnPerson.setRequestProperty("Content-Type", "application/xml");
 
         //Concatenate new transaction.xml string in the formal shown below.
-        String newTransaction =
+        String newTransactionSalesLineItem =
                        XML_DECLARATION + "\n"
                 +      ROOT_ELEMENT_BEGIN + "\n"
                 +      CUSTOMER_NAME_BEGIN + customerName + CUSTOMER_NAME_END + "\n"
@@ -136,9 +143,9 @@ public class Sale{
                 +      CREDIT_CARD_NUMBER_BEGIN + creditCardNumber + CREDIT_CARD_NUMBER_END + "\n"
                 +      ROOT_ELEMENT_END;
 
-        // System.out.println(newTransaction);
+        // System.out.println(newTransactionSalesLineItem);
         OutputStream postOutputStream = postConnPerson.getOutputStream();
-        postOutputStream.write(newTransaction.getBytes());
+        postOutputStream.write(newTransactionSalesLineItem.getBytes());
         postOutputStream.flush();
 
         //Throws runtimeException if error code is 400 or greater
@@ -187,13 +194,11 @@ public class Sale{
           //Concatenate new transaction.xml string in the formal shown below.
           String newTransactionSalesLineItem =
                          XML_DECLARATION + "\n"
-                  +      ROOT_ELEMENT_BEGIN + "\n"
-                  +      CUSTOMER_NAME_BEGIN + customerName + CUSTOMER_NAME_END + "\n"
-                  +      MONEY_PAID_BEGIN + amountTendered + MONEY_PAID_END + "\n"
-                  +      PAYMENT_TYPE_BEGIN + paymentType + PAYMENT_TYPE_END + "\n"
-                  +      TRANSACTION_ID_BEGIN + transactionId + TRANSACTION_ID_END + "\n"
-                  +      CREDIT_CARD_NUMBER_BEGIN + creditCardNumber + CREDIT_CARD_NUMBER_END + "\n"
-                  +      ROOT_ELEMENT_END;
+                  +      ITEM_TRANSACTION_BEGIN + "\n"
+                  +      TRANSACTION_ID_BEGIN + this.transactionId + TRANSACTION_ID_END + "\n"
+                  +      UPC_BEGIN + upc + UPC_END + "\n"
+                  +      QUANTITY_BEGIN + quantity + QUANTITY_END + "\n"
+                  +      ITEM_TRANSACTION_END;
 
           // System.out.println(newTransactionSalesLineItem);
           OutputStream postOutputStream = postConnPerson.getOutputStream();
