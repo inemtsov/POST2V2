@@ -16,7 +16,7 @@ public class PaymentPanel extends javax.swing.JPanel {
     public PaymentPanel() {
         initComponents();
     }
-    
+
     public String getPaymentTextfield(){
         return areaPayment.getText();
     }
@@ -24,13 +24,13 @@ public class PaymentPanel extends javax.swing.JPanel {
     public String getSelectedPaymentType(){
         return paymentTypeDropDownMenu.getItemAt(paymentTypeDropDownMenu.getSelectedIndex());
     }
-    
+
     public void reset(){
         areaPayment.setText(null);
         paymentTypeDropDownMenu.setSelectedIndex(0);
         textPayment.setText("Tendered amount: $");
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -72,7 +72,7 @@ public class PaymentPanel extends javax.swing.JPanel {
 
         paymentTypeLabel.setText("Payment Type:");
 
-        paymentTypeDropDownMenu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cash", "Check", "Credit Card" }));
+        paymentTypeDropDownMenu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cash", "Check", "CreditCard" }));
         paymentTypeDropDownMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 paymentTypeDropDownMenuActionPerformed(evt);
@@ -126,16 +126,16 @@ public class PaymentPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-   
+
     private void payButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_payButtonActionPerformed
 
     private void paymentTypeDropDownMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paymentTypeDropDownMenuActionPerformed
-    
+
         switch(paymentTypeDropDownMenu.getSelectedIndex()){
             case 1:
-            textPayment.setText("Check amount #:");
+            textPayment.setText("Check amount: $");
             break;
             case 2:
             textPayment.setText("Credit card #:");

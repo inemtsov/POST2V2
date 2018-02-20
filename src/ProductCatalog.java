@@ -13,10 +13,10 @@ import org.w3c.dom.NodeList;
 /* Author Ilya Nemtsov */
 
 public class ProductCatalog {
-    
+
   private HashMap<String, Item> products;
   private static ArrayList<String> listOfUPC = new ArrayList<String>();
-  public ProductCatalog() 
+  public ProductCatalog()
   {
       try{
             this.products = new HashMap<>();
@@ -24,7 +24,7 @@ public class ProductCatalog {
             HttpURLConnection getConnPersonName = (HttpURLConnection) urlPersonName.openConnection();
             getConnPersonName.setRequestMethod("GET");
             getConnPersonName.setRequestProperty("Accept", "application/xml");
-            
+
             if (getConnPersonName.getResponseCode() != 200) {
                 throw new RuntimeException("Failed : HTTP error code : "
                         + getConnPersonName.getResponseCode());
@@ -33,12 +33,12 @@ public class ProductCatalog {
             byte[] bytes = new byte[byteLen];
             getConnPersonName.getInputStream().read(bytes, 0, byteLen);
             for(int i = 0; i < byteLen; i++){
-                System.out.print((char)bytes[i]);
+                // System.out.print((char)bytes[i]);
             }
             DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
             Document doc = builder.parse(new ByteArrayInputStream(bytes));
             NodeList products = doc.getElementsByTagName("products");
-            
+
             for(int i = 0; i < products.getLength(); i++){
                 Element element = (Element)products.item(i);
                 String upc = element.getElementsByTagName("upc").item(0).getTextContent();
@@ -53,7 +53,7 @@ public class ProductCatalog {
         }
   }
 
-  public static String[] getAllUpc() throws IOException  
+  public static String[] getAllUpc() throws IOException
   {
     //new ProductCatalog( "products.txt" );//temporray since manager is not setting this up
     String[] arr = new String[listOfUPC.size()];
@@ -62,8 +62,8 @@ public class ProductCatalog {
     }
     return arr;
   }
-  
-  public Item getItem( String UPC ) 
+
+  public Item getItem( String UPC )
   {
     return products.get( UPC );
   }

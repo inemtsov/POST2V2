@@ -10,4 +10,7 @@ public class Check extends Payment {
     this.checkAmount = checkAmount;
   }
 
+  public float getCheckAmount() {
+    return checkAmount;
+  }
 }
