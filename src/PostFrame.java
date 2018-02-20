@@ -63,7 +63,11 @@ public class PostFrame extends javax.swing.JFrame {
     public void popUpEmptyCart() {
         JOptionPane.showMessageDialog(null, "Your cart is empty");
     }
-
+    
+    public void popUpTransactionInfo(String transaction){
+        JOptionPane.showMessageDialog(null, transaction, "transaction Info", JOptionPane.PLAIN_MESSAGE);
+    }
+    
     public void setSaleDate(String date) {
         dateLabel.setText(date);
     }
