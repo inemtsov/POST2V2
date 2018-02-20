@@ -139,6 +139,7 @@ public class PanelMediator {
                                 if (framePayment.getPaymentPanel().getPaymentTextfield().matches("[0-9]+")) {
                                     CreditCard credit = new CreditCard(sale.getSubtotal(), framePayment.getPaymentPanel().getPaymentTextfield(), sale.getSubtotal());
                                     sale.setAmountTendered(credit.getCreditAmount());
+                                    sale.setCreditCardNumber(credit.getCreditCardNumber());
                                     if (!credit.isApproved()) {
                                         framePayment.popUpCreditCardRejected();
                                     } else {

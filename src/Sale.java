@@ -20,6 +20,8 @@ public class Sale{
     private static final String PAYMENT_TYPE_END = "</paymentType>";
     private static final String TRANSACTION_ID_BEGIN = "<transactionId>";
     private static final String TRANSACTION_ID_END = "</transactionId>";
+    private static final String CREDIT_CARD_NUMBER_BEGIN = "<creditCard>";
+    private static final String CREDIT_CARD_NUMBER_END = "</creditCard>";
 
     private static Date date;
     private HashMap<String, SaleLineItem> saleLineItems;
@@ -30,6 +32,7 @@ public class Sale{
     private float moneyChange;
     private int numberOfLineItems;
     private int transactionId;
+    private String creditCardNumber;
 
     public Sale(){
         saleLineItems = new HashMap<>();
@@ -37,6 +40,10 @@ public class Sale{
         numberOfLineItems = 0;
         transactionId = (int) (System.currentTimeMillis() & 0xfffffff);
         // System.out.println("ID = " + transactionId);
+    }
+
+    public void setCreditCardNumber(String creditCardNumber) {
+      this.creditCardNumber = creditCardNumber;
     }
 
     public void setDate(Date date){
@@ -133,7 +140,8 @@ public class Sale{
           +      CUSTOMER_NAME_BEGIN + customerName + CUSTOMER_NAME_END + "\n"
           +      MONEY_PAID_BEGIN + amountTendered + MONEY_PAID_END + "\n"
           +      PAYMENT_TYPE_BEGIN + paymentType + PAYMENT_TYPE_END + "\n"
-           +      TRANSACTION_ID_BEGIN + transactionId + TRANSACTION_ID_END + "\n"
+          +      TRANSACTION_ID_BEGIN + transactionId + TRANSACTION_ID_END + "\n"
+          +      CREDIT_CARD_NUMBER_BEGIN + creditCardNumber + CREDIT_CARD_NUMBER_END + "\n"
           +      ROOT_ELEMENT_END;
 
   System.out.println(newTransaction);

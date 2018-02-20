@@ -31,4 +31,8 @@ public class CreditCard extends Payment {
   public float getCreditAmount() {
     return creditAmount;
   }
+
+  public String getCreditCardNumber() {
+    return cardNumber;
+  }
 }
