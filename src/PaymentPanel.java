@@ -72,7 +72,7 @@ public class PaymentPanel extends javax.swing.JPanel {
 
         paymentTypeLabel.setText("Payment Type:");
 
-        paymentTypeDropDownMenu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cash", "Check", "Credit Card" }));
+        paymentTypeDropDownMenu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cash", "Check", "CreditCard" }));
         paymentTypeDropDownMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 paymentTypeDropDownMenuActionPerformed(evt);

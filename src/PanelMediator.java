@@ -110,9 +110,9 @@ public class PanelMediator {
                                     if (Float.parseFloat(framePayment.getPaymentPanel().getPaymentTextfield()) < sale.getSubtotal()) {
                                         framePayment.popUpPaymentRejected();
                                     } else {
-                                        Cash pay = new Cash(sale.getSubtotal(), Float.parseFloat(framePayment.getPaymentPanel().getPaymentTextfield()));
-                                        sale.setAmountTendered(pay.getTenderedAmount());
-                                        framePayment.popUpCashChange("Your change is $" + String.format("%.2f", pay.getChange()));
+                                        Cash cash = new Cash(sale.getSubtotal(), Float.parseFloat(framePayment.getPaymentPanel().getPaymentTextfield()));
+                                        sale.setAmountTendered(cash.getTenderedAmount());
+                                        framePayment.popUpCashChange("Your change is $" + String.format("%.2f", cash.getChange()));
                                         saleCompleted();
                                     }
                                 } catch (NumberFormatException e) {
@@ -135,9 +135,10 @@ public class PanelMediator {
                                     framePayment.popUpPaymentRejected();
                                 }
                                 break;
-                            case "Credit Card":
+                            case "CreditCard":
                                 if (framePayment.getPaymentPanel().getPaymentTextfield().matches("[0-9]+")) {
-                                    CreditCard credit = new CreditCard(sale.getSubtotal(), framePayment.getPaymentPanel().getPaymentTextfield());
+                                    CreditCard credit = new CreditCard(sale.getSubtotal(), framePayment.getPaymentPanel().getPaymentTextfield(), sale.getSubtotal());
+                                    sale.setAmountTendered(credit.getCreditAmount());
                                     if (!credit.isApproved()) {
                                         framePayment.popUpCreditCardRejected();
                                     } else {
