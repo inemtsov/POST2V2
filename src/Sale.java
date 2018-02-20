@@ -23,11 +23,13 @@ public class Sale{
     private static final String CREDIT_CARD_NUMBER_BEGIN = "<creditCard>";
     private static final String CREDIT_CARD_NUMBER_END = "</creditCard>";
 
-    private static final String ITEM_TRANSACTION_BEGIN = "<itemTransaction>";
-    private static final String ITEM_TRANSACTION_END = "</itemTransaction>";
+    private static final String ITEMS_TRANSACTION_BEGIN = "<itemsTransaction>";
+    private static final String ITEMS_TRANSACTION_END = "</itemsTransaction>";
+    private static final String ITEMS_TRANSACTION_PK_BEGIN = "<itemsTransactionPK>";
+    private static final String ITEMS_TRANSACTION_PK_END = "</itemsTransactionPK>";
     private static final String UPC_BEGIN = "<upc>";
     private static final String UPC_END = "</upc>";
-    private static final String QUANTITY_BEGIN = "</quantity>";
+    private static final String QUANTITY_BEGIN = "<quantity>";
     private static final String QUANTITY_END = "</quantity>";
 
     private static Date date;
@@ -119,7 +121,7 @@ public class Sale{
         Payment is saved once the user clicks "pay" on the post.
     */
     public void saveIntoDatabase(){
-      // saveTransactionDataToDatabase();
+      saveTransactionDataToDatabase();
       saveInvoiceItemListToDatabase();
     }
 
@@ -180,8 +182,8 @@ public class Sale{
         // System.out.println("upc = " + sli.getItem().getUPC() + " quantity = " + sli.getQuantity());
         String upc = sli.getItem().getUPC();
         int quantity = sli.getQuantity();
-        System.out.println("upc = " + upc);
-        System.out.println("quantity = " + quantity);
+        // System.out.println("upc = " + upc);
+        // System.out.println("quantity = " + quantity);
 
         try {
           //Attempts to connect to the server.
@@ -193,14 +195,17 @@ public class Sale{
 
           //Concatenate new transaction.xml string in the formal shown below.
           String newTransactionSalesLineItem =
-                         XML_DECLARATION + "\n"
-                  +      ITEM_TRANSACTION_BEGIN + "\n"
+                         // XML_DECLARATION + "\n"
+                  // +      ITEMS_TRANSACTION_BEGIN + "\n"
+                        ITEMS_TRANSACTION_BEGIN + "\n"
+                  +      ITEMS_TRANSACTION_PK_BEGIN + "\n"
                   +      TRANSACTION_ID_BEGIN + this.transactionId + TRANSACTION_ID_END + "\n"
                   +      UPC_BEGIN + upc + UPC_END + "\n"
+                  +      ITEMS_TRANSACTION_PK_END + "\n"
                   +      QUANTITY_BEGIN + quantity + QUANTITY_END + "\n"
-                  +      ITEM_TRANSACTION_END;
+                  +      ITEMS_TRANSACTION_END;
 
-          // System.out.println(newTransactionSalesLineItem);
+          System.out.println(newTransactionSalesLineItem);
           OutputStream postOutputStream = postConnPerson.getOutputStream();
           postOutputStream.write(newTransactionSalesLineItem.getBytes());
           postOutputStream.flush();
