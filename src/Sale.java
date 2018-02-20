@@ -112,65 +112,117 @@ public class Sale{
         Payment is saved once the user clicks "pay" on the post.
     */
     public void saveIntoDatabase(){
-      try
-{
-  //Attempts to connect to the server.
-  // URL urlPerson = new URL("http://localhost:8080/PostClient/webresources/com.postentity.transactions");
-  URL urlPerson = new URL("http://localhost:8080/PostServer/webresources/com.postentity.transactions");
-  HttpURLConnection postConnPerson = (HttpURLConnection) urlPerson.openConnection();
-  postConnPerson.setDoOutput(true);
-  postConnPerson.setRequestMethod("POST");
-  postConnPerson.setRequestProperty("Content-Type", "application/xml");
+      // saveTransactionDataToDatabase();
+      saveInvoiceItemListToDatabase();
+    }
 
-  //Concatenate new transaction.xml string in the formal shown below.
+    private void saveTransactionDataToDatabase() {
+      try {
+        //Attempts to connect to the server.
+        URL urlPerson = new URL("http://localhost:8080/PostServer/webresources/com.postentity.transactions");
+        HttpURLConnection postConnPerson = (HttpURLConnection) urlPerson.openConnection();
+        postConnPerson.setDoOutput(true);
+        postConnPerson.setRequestMethod("POST");
+        postConnPerson.setRequestProperty("Content-Type", "application/xml");
 
-  /*
-  <?xml version="1.0" encoding="UTF-8"?>
-  <transactions>
-      <customerName>Leire Litwin</customerName>
-      <moneyPaid>8</moneyPaid>
-      <paymentType>CHECK</paymentType>
-      <transactionId>3</transactionId>
-  </transactions>
-  */
+        //Concatenate new transaction.xml string in the formal shown below.
+        String newTransaction =
+                       XML_DECLARATION + "\n"
+                +      ROOT_ELEMENT_BEGIN + "\n"
+                +      CUSTOMER_NAME_BEGIN + customerName + CUSTOMER_NAME_END + "\n"
+                +      MONEY_PAID_BEGIN + amountTendered + MONEY_PAID_END + "\n"
+                +      PAYMENT_TYPE_BEGIN + paymentType + PAYMENT_TYPE_END + "\n"
+                +      TRANSACTION_ID_BEGIN + transactionId + TRANSACTION_ID_END + "\n"
+                +      CREDIT_CARD_NUMBER_BEGIN + creditCardNumber + CREDIT_CARD_NUMBER_END + "\n"
+                +      ROOT_ELEMENT_END;
 
-  String newTransaction =
-                 XML_DECLARATION + "\n"
-          +      ROOT_ELEMENT_BEGIN + "\n"
-          +      CUSTOMER_NAME_BEGIN + customerName + CUSTOMER_NAME_END + "\n"
-          +      MONEY_PAID_BEGIN + amountTendered + MONEY_PAID_END + "\n"
-          +      PAYMENT_TYPE_BEGIN + paymentType + PAYMENT_TYPE_END + "\n"
-          +      TRANSACTION_ID_BEGIN + transactionId + TRANSACTION_ID_END + "\n"
-          +      CREDIT_CARD_NUMBER_BEGIN + creditCardNumber + CREDIT_CARD_NUMBER_END + "\n"
-          +      ROOT_ELEMENT_END;
+        // System.out.println(newTransaction);
+        OutputStream postOutputStream = postConnPerson.getOutputStream();
+        postOutputStream.write(newTransaction.getBytes());
+        postOutputStream.flush();
 
-  System.out.println(newTransaction);
-  OutputStream postOutputStream = postConnPerson.getOutputStream();
-  postOutputStream.write(newTransaction.getBytes());
-  postOutputStream.flush();
+        //Throws runtimeException if error code is 400 or greater
+        if (postConnPerson.getResponseCode() >= 400) {
+            throw new RuntimeException("Failed : HTTP error code : "
+                    + postConnPerson.getResponseCode());
+        }
 
-  //Throws runtimeException if error code is 400 or greater
-  if (postConnPerson.getResponseCode() >= 400) {
-      throw new RuntimeException("Failed : HTTP error code : "
-              + postConnPerson.getResponseCode());
-  }
+        //Prints out response from the server, then disconnects
+        String output = "";
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(
+                (postConnPerson.getInputStream())));
+        System.out.println("Output from Server .... \n");
+        while ((output = bufferedReader.readLine()) != null)
+        {
+          System.out.println(output);
+        }
+        postConnPerson.disconnect();
 
-  //Prints out response from the server, then disconnects
-  String output = "";
-  BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(
-          (postConnPerson.getInputStream())));
-  System.out.println("Output from Server .... \n");
-  while ((output = bufferedReader.readLine()) != null)
-  {
-      System.out.println(output);
-  }
-  postConnPerson.disconnect();
+        } catch (MalformedURLException e) {
+          e.printStackTrace();
+        } catch (IOException e) {
+          e.printStackTrace();
+        }
+    }
 
-} catch (MalformedURLException e) {
-  e.printStackTrace();
-} catch (IOException e) {
-  e.printStackTrace();
-}
+    public void saveInvoiceItemListToDatabase() {
+      Iterator it = saleLineItems.entrySet().iterator();
+      while(it.hasNext()) {
+        Map.Entry pair = (Map.Entry) it.next();
+        SaleLineItem sli = (SaleLineItem) pair.getValue();
+        // System.out.println("upc = " + sli.getItem().getUPC() + " quantity = " + sli.getQuantity());
+        String upc = sli.getItem().getUPC();
+        int quantity = sli.getQuantity();
+        System.out.println("upc = " + upc);
+        System.out.println("quantity = " + quantity);
+
+        try {
+          //Attempts to connect to the server.
+          URL urlPerson = new URL("http://localhost:8080/PostServer/webresources/com.postentity.itemstransaction");
+          HttpURLConnection postConnPerson = (HttpURLConnection) urlPerson.openConnection();
+          postConnPerson.setDoOutput(true);
+          postConnPerson.setRequestMethod("POST");
+          postConnPerson.setRequestProperty("Content-Type", "application/xml");
+
+          //Concatenate new transaction.xml string in the formal shown below.
+          String newTransactionSalesLineItem =
+                         XML_DECLARATION + "\n"
+                  +      ROOT_ELEMENT_BEGIN + "\n"
+                  +      CUSTOMER_NAME_BEGIN + customerName + CUSTOMER_NAME_END + "\n"
+                  +      MONEY_PAID_BEGIN + amountTendered + MONEY_PAID_END + "\n"
+                  +      PAYMENT_TYPE_BEGIN + paymentType + PAYMENT_TYPE_END + "\n"
+                  +      TRANSACTION_ID_BEGIN + transactionId + TRANSACTION_ID_END + "\n"
+                  +      CREDIT_CARD_NUMBER_BEGIN + creditCardNumber + CREDIT_CARD_NUMBER_END + "\n"
+                  +      ROOT_ELEMENT_END;
+
+          // System.out.println(newTransactionSalesLineItem);
+          OutputStream postOutputStream = postConnPerson.getOutputStream();
+          postOutputStream.write(newTransactionSalesLineItem.getBytes());
+          postOutputStream.flush();
+
+          //Throws runtimeException if error code is 400 or greater
+          if (postConnPerson.getResponseCode() >= 400) {
+              throw new RuntimeException("Failed : HTTP error code : "
+                      + postConnPerson.getResponseCode());
+          }
+
+          //Prints out response from the server, then disconnects
+          String output = "";
+          BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(
+                  (postConnPerson.getInputStream())));
+          System.out.println("Output from Server .... \n");
+          while ((output = bufferedReader.readLine()) != null)
+          {
+            System.out.println(output);
+          }
+          postConnPerson.disconnect();
+
+          } catch (MalformedURLException e) {
+            e.printStackTrace();
+          } catch (IOException e) {
+            e.printStackTrace();
+          }
+      }
     }
 
     @Override
