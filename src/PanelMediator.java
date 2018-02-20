@@ -1,9 +1,4 @@
-
 import java.util.Date;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -129,7 +124,12 @@ public class PanelMediator {
                                     } else {
                                         Check check = new Check(sale.getSubtotal(), Float.parseFloat(framePayment.getPaymentPanel().getPaymentTextfield()));
                                         sale.setAmountTendered(check.getCheckAmount());
-                                        saleCompleted();
+                                        if (!check.isApproved()) {
+                                            framePayment.popUpCreditCardRejected();
+                                        } else {
+                                            saleCompleted();
+
+                                        }
                                     }
                                 } catch (NumberFormatException e) {
                                     framePayment.popUpPaymentRejected();
@@ -183,8 +183,7 @@ public class PanelMediator {
                 + "<p>" + "Payment type: " + sale.getPaymentType() + "<br><br>"
                 + "<p>" + "Sale date: " + sale.getDate().toString() + "<br><br>";
 
-        JOptionPane.showMessageDialog(null, transaction, "transaction reciept", JOptionPane.PLAIN_MESSAGE);
-
+                framePayment.popUpTransactionInfo(transaction);
     }
 
 }
