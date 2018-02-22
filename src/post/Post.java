@@ -1,3 +1,10 @@
+package post;
+
+
+import gui.PanelMediator;
+import store.Store;
+import store.ProductCatalog;
+
 
 /*
  * To change this license header, choose License Headers in Project Properties.

@@ -1,3 +1,11 @@
+package gui;
+
+import sale.Sale;
+import store.Item;
+import store.ProductCatalog;
+import payment.Cash;
+import payment.CreditCard;
+import payment.Check;
 import java.util.Date;
 
 /*

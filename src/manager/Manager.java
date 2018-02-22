@@ -1,3 +1,10 @@
+package manager;
+
+
+import post.Post;
+import store.Store;
+import store.ProductCatalog;
+
 
 /* Leire Litwin */
 

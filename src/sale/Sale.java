@@ -1,3 +1,6 @@
+package sale;
+
+import store.Item;
 import java.util.*;
 import java.io.BufferedReader;
 import java.io.IOException;

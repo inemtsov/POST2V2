@@ -1,3 +1,5 @@
+package payment;
+
 /* Author Ilya Nemtsov */
 
 public class CreditCard extends Payment {
