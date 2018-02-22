@@ -1,3 +1,8 @@
+package sale;
+
+
+import store.Item;
+
 /* Author Peter Cruz */
 
 public class SaleLineItem {

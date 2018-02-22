@@ -1,4 +1,7 @@
+package gui;
 
+
+import store.ProductCatalog;
 import java.io.IOException;
 
 /*,
@@ -6,7 +9,6 @@ import java.io.IOException;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author leirelitwin
@@ -18,11 +20,24 @@ public class ProductPanel extends javax.swing.JPanel {
      */
     public ProductPanel() {
         initComponents();
-        try{
+        try {
             UPCSelector.setModel(new javax.swing.DefaultComboBoxModel<>(ProductCatalog.getAllUpc()));
-        } catch(Exception e){
+        } catch (Exception e) {
             System.out.print(e);
         }
+    }
+
+    public String getSelectedUPC() {
+        return UPCSelector.getItemAt(UPCSelector.getSelectedIndex());
+    }
+
+    public int getSelectedQuantity() {
+        return quantitySelector.getSelectedIndex() + 1;
+    }
+    
+    public void reset() {
+        UPCSelector.setSelectedIndex(0);
+        quantitySelector.setSelectedIndex(0);
     }
 
     /**
@@ -62,7 +77,7 @@ public class ProductPanel extends javax.swing.JPanel {
 
         quantityLabel.setText("Quantity:");
 
-        quantitySelector.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
+        quantitySelector.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -100,7 +115,7 @@ public class ProductPanel extends javax.swing.JPanel {
 
     private void AddProductButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddProductButtonActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_AddProductButtonActionPerformed
 
 

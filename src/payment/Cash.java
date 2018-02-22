@@ -1,3 +1,5 @@
+package payment;
+
 
 /* Author Ilya Nemtsov */
 
@@ -17,17 +19,14 @@ public class Cash extends Payment {
   }
 
   private void calculateChange() {
-    //float calculatedChange = tenderedAmount - getAmount();
-    float calculatedChange = tenderedAmount - amount;
-    if(calculatedChange >= 0) {
-      change = calculatedChange;
-    }
-    else{
-      change = -1.0f;
-    }
+      change = tenderedAmount - amount;
   }
 
   public float getChange() {
     return change;
+  }
+
+  public float getTenderedAmount() {
+    return tenderedAmount;
   }
 }

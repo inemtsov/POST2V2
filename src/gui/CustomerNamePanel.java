@@ -1,3 +1,5 @@
+package gui;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -13,8 +15,18 @@ public class CustomerNamePanel extends javax.swing.JPanel {
     /**
      * Creates new form CustomerNamePanel
      */
-    public CustomerNamePanel() {
+    public CustomerNamePanel() 
+    {
         initComponents();
+    }
+    
+    public void reset(){
+       customerNameText.setText(null);
+       customerNameText.setEnabled(true);
+   }
+    
+    public String getCustomerName(){
+        return customerNameText.getText();
     }
 
     /**
