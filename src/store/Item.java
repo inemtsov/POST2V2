@@ -1,10 +1,10 @@
 package store;
 
 /**
- *
- * @author ilyanemtsov
- */
- 
+*
+* @author ilyanemtsov
+*/
+
 public class Item {
 
   private String description;

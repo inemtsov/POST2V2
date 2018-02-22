@@ -1,9 +1,9 @@
 package payment;
 
 /**
- *
- * @author ilyanemtsov
- */
+*
+* @author ilyanemtsov
+*/
 
 public class Check extends Payment {
 
