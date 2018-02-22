@@ -1,6 +1,9 @@
 package payment;
 
-/* Author Ilya Nemtsov */
+/**
+*
+* @author ilyanemtsov
+*/
 
 public class Check extends Payment {
 
@@ -16,7 +19,7 @@ public class Check extends Payment {
   public float getCheckAmount() {
     return checkAmount;
   }
-  
+
    private void processCheck() {
 
     double random = Math.random();

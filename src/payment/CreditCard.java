@@ -1,6 +1,9 @@
 package payment;
 
-/* Author Ilya Nemtsov */
+/**
+*
+* @author ilyanemtsov
+*/
 
 public class CreditCard extends Payment {
 

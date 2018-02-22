@@ -1,7 +1,9 @@
 package payment;
 
-
-/* Author Ilya Nemtsov */
+/**
+*
+* @author ilyanemtsov
+*/
 
 public class Payment {
   private float amount;

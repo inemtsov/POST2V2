@@ -12,7 +12,10 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
-/* Author Ilya Nemtsov */
+/**
+*
+* @author ilyanemtsov
+*/
 
 public class ProductCatalog {
 
@@ -37,9 +40,7 @@ public class ProductCatalog {
           int byteLen = getConnPersonName.getInputStream().available();
           byte[] bytes = new byte[byteLen];
           getConnPersonName.getInputStream().read(bytes, 0, byteLen);
-          for(int i = 0; i < byteLen; i++){
-              // System.out.print((char)bytes[i]);
-          }
+
           DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
           Document doc = builder.parse(new ByteArrayInputStream(bytes));
           NodeList products = doc.getElementsByTagName("products");
