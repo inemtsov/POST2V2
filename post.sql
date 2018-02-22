@@ -10,7 +10,7 @@ CREATE TABLE products(
 );
 
 CREATE TABLE transactions(
-  transaction_id INTEGER NOT NULL AUTO_INCREMENT,
+  transaction_id INTEGER NOT NULL,
   customer_name varchar(20),
   payment_type varchar(10),
   money_paid DECIMAL(8,2),
@@ -19,12 +19,11 @@ CREATE TABLE transactions(
 );
 
 CREATE TABLE items_transaction(
+  transaction_item_id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY,
   transaction_id INTEGER NOT NULL,
   UPC varchar(4) NOT NULL,
   quantity INTEGER,
-  PRIMARY KEY (transaction_id, UPC),
-  FOREIGN KEY (UPC) REFERENCES products (UPC) ON DELETE CASCADE,
-  FOREIGN KEY (transaction_id) REFERENCES transactions (transaction_id) ON DELETE CASCADE
+  PRIMARY KEY (transaction_item_id)
 );
 
 INSERT INTO products (UPC, description, price) VALUES
