@@ -40,9 +40,7 @@ public class ProductCatalog {
           int byteLen = getConnPersonName.getInputStream().available();
           byte[] bytes = new byte[byteLen];
           getConnPersonName.getInputStream().read(bytes, 0, byteLen);
-          for(int i = 0; i < byteLen; i++){
-              // System.out.print((char)bytes[i]);
-          }
+
           DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
           Document doc = builder.parse(new ByteArrayInputStream(bytes));
           NodeList products = doc.getElementsByTagName("products");
