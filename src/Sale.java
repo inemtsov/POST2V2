@@ -195,13 +195,9 @@ public class Sale{
 
           //Concatenate new transaction.xml string in the formal shown below.
           String newTransactionSalesLineItem =
-                         // XML_DECLARATION + "\n"
-                  // +      ITEMS_TRANSACTION_BEGIN + "\n"
                         ITEMS_TRANSACTION_BEGIN + "\n"
-                  +      ITEMS_TRANSACTION_PK_BEGIN + "\n"
                   +      TRANSACTION_ID_BEGIN + this.transactionId + TRANSACTION_ID_END + "\n"
                   +      UPC_BEGIN + upc + UPC_END + "\n"
-                  +      ITEMS_TRANSACTION_PK_END + "\n"
                   +      QUANTITY_BEGIN + quantity + QUANTITY_END + "\n"
                   +      ITEMS_TRANSACTION_END;
 
