@@ -5,26 +5,26 @@ package gui;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author ilyanemtsov
  */
+
 public class CustomerNamePanel extends javax.swing.JPanel {
 
     /**
      * Creates new form CustomerNamePanel
      */
-    public CustomerNamePanel() 
+    public CustomerNamePanel()
     {
         initComponents();
     }
-    
+
     public void reset(){
        customerNameText.setText(null);
        customerNameText.setEnabled(true);
    }
-    
+
     public String getCustomerName(){
         return customerNameText.getText();
     }

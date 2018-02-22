@@ -12,7 +12,10 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
-/* Author Ilya Nemtsov */
+/**
+ *
+ * @author ilyanemtsov
+ */
 
 public class ProductCatalog {
 

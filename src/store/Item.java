@@ -1,8 +1,10 @@
 package store;
 
-
-/* Author Ilya Nemtsov */
-
+/**
+ *
+ * @author ilyanemtsov
+ */
+ 
 public class Item {
 
   private String description;
