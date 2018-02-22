@@ -1,3 +1,5 @@
+package gui;
+
 
 import java.awt.ComponentOrientation;
 import javax.swing.JLabel;

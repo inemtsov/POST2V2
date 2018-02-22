@@ -1,4 +1,7 @@
+package gui;
 
+
+import store.ProductCatalog;
 import java.io.IOException;
 
 /*,
