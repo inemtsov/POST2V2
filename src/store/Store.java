@@ -1,5 +1,9 @@
 package store;
 
+/**
+ *
+ * @author PeterJayCruz
+ */
 
 public class Store {
 

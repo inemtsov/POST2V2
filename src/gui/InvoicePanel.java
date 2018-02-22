@@ -1,6 +1,5 @@
 package gui;
 
-
 import java.awt.ComponentOrientation;
 import javax.swing.JLabel;
 import javax.swing.table.DefaultTableCellRenderer;

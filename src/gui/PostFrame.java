@@ -1,12 +1,16 @@
 package gui;
 
+import javax.swing.JOptionPane;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-import javax.swing.JOptionPane;
+ /**
+  *
+  * @author PeterJayCruz
+  */
 
 public class PostFrame extends javax.swing.JFrame {
 
@@ -49,7 +53,7 @@ public class PostFrame extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "The payment is not correct");
     }
 
-       
+
     public void popUpCheckRejected() {
         JOptionPane.showMessageDialog(null, "Check amount doesn't match subtotal amount");
     }
@@ -65,11 +69,11 @@ public class PostFrame extends javax.swing.JFrame {
     public void popUpEmptyCart() {
         JOptionPane.showMessageDialog(null, "Your cart is empty");
     }
-    
+
     public void popUpTransactionInfo(String transaction){
         JOptionPane.showMessageDialog(null, transaction, "transaction Info", JOptionPane.PLAIN_MESSAGE);
     }
-    
+
     public void setSaleDate(String date) {
         dateLabel.setText(date);
     }

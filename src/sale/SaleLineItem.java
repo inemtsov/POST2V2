@@ -1,9 +1,11 @@
 package sale;
 
+/**
+ *
+ * @author PeterJayCruz
+ */
 
 import store.Item;
-
-/* Author Peter Cruz */
 
 public class SaleLineItem {
 
