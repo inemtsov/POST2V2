@@ -1,9 +1,9 @@
 package sale;
 
 /**
- *
- * @author PeterJayCruz
- */
+*
+* @author PeterJayCruz
+*/
 
 import store.Item;
 

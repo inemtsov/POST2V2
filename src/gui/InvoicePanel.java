@@ -4,15 +4,11 @@ import java.awt.ComponentOrientation;
 import javax.swing.JLabel;
 import javax.swing.table.DefaultTableCellRenderer;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 /**
- *
- * @author PeterJayCruz
+*
+* @author PeterJayCruz
  */
+
 public class InvoicePanel extends javax.swing.JPanel {
 
     private int currentRow = 0;
