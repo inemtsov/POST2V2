@@ -1,18 +1,13 @@
 package gui;
 
-
 import store.ProductCatalog;
 import java.io.IOException;
 
-/*,
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 /**
- *
- * @author leirelitwin
- */
+*
+* @author leirelitwin
+*/
+
 public class ProductPanel extends javax.swing.JPanel {
 
     /**
@@ -34,7 +29,7 @@ public class ProductPanel extends javax.swing.JPanel {
     public int getSelectedQuantity() {
         return quantitySelector.getSelectedIndex() + 1;
     }
-    
+
     public void reset() {
         UPCSelector.setSelectedIndex(0);
         quantitySelector.setSelectedIndex(0);
